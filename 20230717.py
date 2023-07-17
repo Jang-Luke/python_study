@@ -107,9 +107,7 @@ result1 = 8
 k2 = 4
 m2 = 3
 score2 = [4,1,2,2,4,4,4,4,1,2,4,2]
-print(sorted(score1))
-print(sorted(score1)[len(score1)%m1:])
-# sum(sorted(score)[len(score)%m::m])*m
+print(sorted(score2, reverse = True))
 result2 = 33
 def solution(k, m, score):
     answer = 0
@@ -123,3 +121,4 @@ def solution(k, m, score):
     return answer
 print(solution(k1, m1, score1))
 print(solution(k2, m2, score2))
+print(bool(8 and 41))
