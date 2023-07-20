@@ -65,7 +65,6 @@ result2 = [1,6]
 lottos3 = [45,4,35,20,3,9]
 win_nums3 = [20,9,3,45,4,35]
 result3 = [1,1]
-
 def solution(lottos, win_nums):
     rank = {0:6, 1:6, 2:5, 3:4, 4:3, 5:2, 6:1}
     unknown = lottos.count(0)
@@ -111,7 +110,3 @@ print(solution(s1))
 print(solution(s2))
 print(solution(s3))
 print(solution(s4))
-dic = {1:"A", 2:"B", 3:"C"}
-print(dic.items())
-listt = [1,2,3,4,5]
-print(enumerate(listt))
