@@ -8,16 +8,32 @@ result1 = [1, 5400]
 users2 = [[40, 2900],[23, 10000], [11, 5200], [5, 5900], [40, 3100], [27, 9200], [32, 6900]]
 emoticons2 = [1300, 1500, 1600, 4900]
 result2 = [4, 13860]
-def solution(users, emoticons):
-    answer = []
-    rates = [i[0]//10*10 for i in users]
-    price = 0
-    priceList = {}
-    purchaseCnt = {i * 10 : len(list(filter(lambda x : x <= i*10, rates))) for i in range(1, 5)}
-    for index, emoticon in enumerate(emoticons):
-        price += max([emoticon * ((100 - i) / 100) * purchaseCnt[i] for i in [40,30,20,10]])
-        priceList[index] = {i:emoticon * ((100 - i) / 100) * purchaseCnt[i] for i in [40,30,20,10]}
-        print(f"{index} : {max([emoticon * ((100 - i) / 100) * purchaseCnt[i] for i in [40,30,20,10]])}")
-    
-    return purchaseCnt
-print(solution(users2, emoticons2))
+
+# from itertools import product
+
+# def solution(users, emoticons):
+#     answer = [0, 0]
+#     percents = [10, 20, 30, 40]
+#     # 모든 경우의 수
+#     discounts = list(product(percents, repeat=len(emoticons)))
+#     for discount in discounts:
+#         join = 0
+#         price = 0
+#         # 유저별 계산
+#         for user in users:
+#             pay = 0
+#             for i in range(len(emoticons)):
+#                 if user[0] <= discount[i]:
+#                     pay += emoticons[i] * (100 - discount[i])/100
+#                 if pay >= user[1]:
+#                     break
+#             if pay >= user[1]:
+#                 pay = 0
+#                 join += 1
+#             price += pay
+#         # 가입과 금액 비교후 변경
+#         if join > answer[0]:
+#             answer = [join, price]
+#         elif join == answer[0]:
+#             answer[1] = max(answer[1], price)
+#     return answer
