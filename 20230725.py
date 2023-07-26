@@ -13,49 +13,23 @@ deliveries2 = [1,0,2,0,1,0,2]
 pickups2 = [0,2,0,1,0,2,0]
 result2 = 30
 def solution(cap, n, deliveries, pickups):
+    deliveries = deliveries[::-1]
+    pickups = pickups[::-1]
+    # 배열 역순으로 뒤집기
     answer = 0
-    count = 0
-    loopFlag = False
-    while deliveries or pickups:
-        while deliveries and deliveries[-1] == 0:
-            deliveries.pop()
-        while pickups and pickups[-1] == 0:
-            pickups.pop()
-        # 최대 거리
-        distance = max(len(deliveries), len(pickups))
-        for i in range(1, len(deliveries) + 1):
-            if loopFlag:
-                loopFlag = False
-                break
-            if len(deliveries) == 0: break
-            while(deliveries[-i] != 0):
-                deliveries[-i] -= 1
-                count += 1
-                # distance.append(n - i + 1)
-                if count == cap:
-                    count = 0
-                    loopFlag = True
-                    break
-            if i == len(deliveries):
-                count = 0
-                loopFlag = False
-                break
-        for i in range(1, len(pickups) + 1):
-            if loopFlag: 
-                loopFlag = False
-                break
-            if len(pickups) == 0: break
-            while(pickups[-i] != 0):
-                pickups[-i] -= 1
-                count += 1
-                # distance.append(n - i + 1)
-                if count == cap:
-                    count = 0
-                    break
-            if i == len(deliveries):
-                count = 0
-                break
-        answer += distance*2
+
+    delivery_box = 0
+    pickup_box = 0
+    # 배달 or 픽업 해야할 택배 갯수 (끝 거리부터 추가하면서 계산)
+    for i in range(n):
+        delivery_box += deliveries[i]
+        pickup_box += pickups[i]
+        # n - i 거리의 택배 갯수를 더하여
+        while delivery_box > 0 or pickup_box > 0:
+            delivery_box -= cap
+            pickup_box -= cap
+            answer += (n - i) * 2
+        # 그 값이 cap 보다 작은 경우, 최대거리에 2배를 계산
     return answer
 print(solution(cap1, n1, deliveries1, pickups1))
 print(solution(cap2, n2, deliveries2, pickups2))
