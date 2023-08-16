@@ -67,19 +67,18 @@ def solution(n, info):
             elif tmpDiff == diff:
                 if lastIdx < tmpLastIdx:
                     answer = ryanInfo
-                elif lastIdx == tmpLastIdx:
-                    if answer[lastIdx] < ryanInfo[tmpLastIdx]:
-                        print(lastIdx)
-                        print(tmpLastIdx)
-                        print(answer[lastIdx])
-                        print(ryanInfo[tmpLastIdx])
-                        answer = ryanInfo
+                    
+                # elif lastIdx == tmpLastIdx:
+                #     if answer[lastIdx] <= ryanInfo[tmpLastIdx]:
+                #         answer = ryanInfo
     return answer
 
 print(solution(n1, info1))
 print(solution(n2, info2))
 print(solution(n3, info3))
 print(solution(n4, info4))
+
+# 8, 18 케이스 실패
 
 
 
